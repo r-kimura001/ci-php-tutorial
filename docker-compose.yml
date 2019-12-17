@@ -1,0 +1,64 @@
+version: "3"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./Dockerfile_nginx
+      args:
+        - TZ=${TZ}
+    volumes:
+      - ./etc/logs/nginx:/etc/nginx/logs
+      - ./etc/nginx/conf.d:/etc/nginx/conf.d
+      - ${PROJECT_PATH}:/var/www/laravel
+    ports:
+      - ${WEB_PORT}:80
+    links:
+      - app
+    depends_on:
+      - app
+
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile_php
+      args:
+        - TZ=${TZ}
+    volumes:
+      - ${PROJECT_PATH}:/var/www/laravel
+    links:
+      - db_master
+      - node
+    depends_on:
+      - db_master
+      - node
+    environment:
+      - DB_CONNECTION=${DB_CONNECTION}
+      - DB_HOST=${DB_HOST}
+      - DB_DATABASE=${DB_NAME}
+      - DB_USERNAME=${DB_USER}
+      - DB_PASSWORD=${DB_PASS}
+      - TZ=${TZ}
+      - MAIL_HOST=${MAIL_HOST}
+      - MAIL_PORT=${MAIL_PORT}
+  node:
+    image: node:12.13-alpine
+    tty: true
+    volumes:
+      - ${PROJECT_PATH}:/var/www/laravel
+    working_dir: /var/www/laravel
+
+  db_master:
+    image: mysql:5.7
+    volumes:
+      - ./mnt/mysql:/var/lib/mysql
+      - ./etc/mysql/mysql_conf:/etc/mysql/conf.d
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
+      - TZ=${TZ}
+    ports:
+      - ${DB_PORT}:3306
+
