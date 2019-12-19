@@ -11,7 +11,9 @@
 $ docker-compose up -d  
 $ docker-compose exec app ash  
 $ composer update  
-$ exit  
+$ php artisan key:generate  
+$ php artisan config:cache  
+$ php artisan migrate  
 $ cd laravel  
 $ npm install  
 $ npm run watch
