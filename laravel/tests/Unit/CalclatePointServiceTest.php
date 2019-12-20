@@ -21,27 +21,6 @@ class CalclatePointServiceTest extends TestCase
     }
 
     /**
-     * 例外処理のテスト
-     * @test
-     * @group calcPointException
-     */
-    public function exception_try_catch()
-    {
-      try {
-        throw new \InvalidArgumentException('message', 200);
-        $this->fail(); // ① 例外がスローされない時はテストを失敗させる
-      } catch (\Throwable $e) {
-        // 指定した例外クラスがスローされているか
-        $this->expectException(\InvalidArgumentException::class);
-        // スローされた例外のコードを検証
-        $this->expectExceptionCode(200);
-        // スローされた例外のメッセージを検証
-        $this->expectExceptionMessage('message');
-
-      }
-    }
-
-    /**
      * @return array
      */
     public function dataProvider_for_calcPoint()
