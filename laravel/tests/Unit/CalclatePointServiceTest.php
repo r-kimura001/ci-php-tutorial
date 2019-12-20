@@ -70,7 +70,7 @@ class CalclatePointServiceTest extends TestCase
     /**
      * @test
      * @group calcPointService_funokazu
-     * @expectedException App\Exceptions\PreConditionException
+     * @expectedException \App\Exceptions\PreConditionException
      * @expectedExceptionMessage 購入金額が負の数
      */
     public function calcPoint_購入金額が負の数なら例外をスロー()
