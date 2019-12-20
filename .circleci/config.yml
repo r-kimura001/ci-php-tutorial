@@ -62,9 +62,15 @@ jobs:
           command: php artisan migrate --env=testing --database=sqlite_testing --force
 
       # run tests with phpunit or codecept
-#      - run:
-#          working_directory: laravel
-#          command: ./vendor/bin/phpunit
+      - run:
+          working_directory: laravel
+          command: echo $ENV_FILE
+      - run:
+          working_directory: laravel
+          command: echo $ENV_FILE | base64 --decode > .env
+      - run:
+          working_directory: laravel
+          command: ./vendor/bin/phpunit
 #      - run:
 #          working_directory: laravel
 #          command: ./vendor/bin/codecept build
