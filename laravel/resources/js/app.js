@@ -12,15 +12,13 @@ Vue.use(VueObserveVisibility)
 import App from './App.vue'
 
 const createApp = () => {
-
   new Vue({
     el: '#app',
     router,
     store,
     components: { App },
-    template: '<App />'
+    template: '<App />',
   })
 }
 
 createApp()
-

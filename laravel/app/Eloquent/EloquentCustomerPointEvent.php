@@ -8,11 +8,17 @@ use App\Models\PointEvent;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Eloquent\EloquentCustomerPointEvent
+ *
  * @property int $id
  * @property int $customer_id
  * @property string $event
  * @property int $point
  * @property string $created_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Eloquent\EloquentCustomerPointEvent newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Eloquent\EloquentCustomerPointEvent newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Eloquent\EloquentCustomerPointEvent query()
+ * @mixin \Eloquent
  */
 final class EloquentCustomerPointEvent extends Model
 {

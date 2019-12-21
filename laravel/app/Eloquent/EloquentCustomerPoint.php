@@ -7,8 +7,14 @@ namespace App\Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Eloquent\EloquentCustomerPoint
+ *
  * @property int $customer_id
  * @property int $point
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Eloquent\EloquentCustomerPoint newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Eloquent\EloquentCustomerPoint newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Eloquent\EloquentCustomerPoint query()
+ * @mixin \Eloquent
  */
 final class EloquentCustomerPoint extends Model
 {
