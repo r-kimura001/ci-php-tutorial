@@ -68,7 +68,6 @@ jobs:
           name: lint php
           working_directory: laravel
           command: |
-            composer install
             composer phpstan
 
       # run tests with phpunit or codecept
