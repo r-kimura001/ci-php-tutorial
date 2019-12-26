@@ -13,6 +13,10 @@
   "parserOptions": {
     "parser": "babel-eslint"
   },
+  "files": [
+    "resources/**/*.js",
+    "resources/**/*.vue"
+  ],
   "rules": {
     "strict": 0,
     "prettier/prettier": [

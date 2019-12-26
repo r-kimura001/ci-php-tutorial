@@ -10,13 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/ping', function(){
-  return response()->json([
-    'message' => 'hi!!!'
-  ]);
-});
 
 Route::get('/{any?}', function () {
     return view('index');
 })->where('any', '.+');
-

@@ -2,7 +2,9 @@ FROM php:7.3.0RC6-fpm-alpine3.8
 # timezone
 ARG TZ
 WORKDIR /var/www/laravel
-COPY ./etc/php/php.ini /usr/local/etc/php/
+COPY ./docker/php/php.ini /usr/local/etc/php/
+COPY ./laravel/ /var/www/laravel/
+
 RUN apk update && apk add --no-cache \
   freetype-dev libjpeg-turbo-dev libpng-dev libmcrypt-dev \
   git vim unzip tzdata \
@@ -13,4 +15,7 @@ RUN apk update && apk add --no-cache \
   apk del tzdata && \
   rm -rf /var/cache/apk/*
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+  composer global require hirak/prestissimo && \
+  composer install --no-dev  && \
+  chmod -R a+w storage/ bootstrap/cache
